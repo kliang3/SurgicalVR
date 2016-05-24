@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+        <title>Surfer_Brain</title>
+        <meta name="description" content="Aframe">
+        <script src="aframe.min.js"></script>
+        <script src="aframe-keyboard-controls.js"></script>
+        <script src="aframe-gltf.min.js"></script>
+        <script src="line-drawer.js"></script>
+    </head>
+    <body>
+        <a-scene  stats proxy-controls="debug: true; enableOverlay: true;">
+           
+          
+            <a-sky id="backgroundCol" color="black"></a-sky>
+          
+          
+          <a-entity text="text: CT ; size: 0.6;" position="15 6.6 -5" material="color:white">
+          </a-entity>
+
+          <a-entity text="text: MRA ; size: 0.6;" position="15 3.6 -5" material="color:white">
+          </a-entity>
+
+          <a-entity text="text: T1; size: 0.6;" position="15 0.6 -5" material="color:white">
+          </a-entity>
+
+          <a-entity text="text: DTI; size: 0.6;" position="15 -2. -5" material="color:white">
+          </a-entity>
+
+          <a-entity text="text: Display ; size: 0.5;" position="11 8 -5" material="color:white" rotation="0 0 45">
+          </a-entity>
+
+          <a-entity text="text: Controls ; size: 0.5;" position="13.2 8 -5" material="color:white" rotation="0 0 45">
+          </a-entity>
+
+
+
+
+
+            <a-entity camera position="0 4 8" look-controls keyboard-controls="cameraUse: true">
+                  <a-cursor color="#2E3A87"></a-cursor>
+            </a-entity>
+
+             
+      
+
+                <a-entity id="D-CT-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="11 7 -5"></a-entity>
+                <a-entity id="D-CT-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="11 7 -5" visible="false"></a-entity>
+                <a-entity id="D-MRA-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="11 4 -5"></a-entity>
+                <a-entity id="D-MRA-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="11 4 -5" visible="false" ></a-entity>
+                <a-entity id="D-T1-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="11 1 -5"></a-entity>
+                <a-entity id="D-T1-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="11 1 -5" visible="false" ></a-entity>
+                <a-entity id="D-DT1-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="11 -2 -5"></a-entity>
+                <a-entity id="D-DT1-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="11 -2 -5" visible="false" ></a-entity>
+
+                 <a-entity id="C-CT-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="13 7 -5"></a-entity>
+                <a-entity id="C-CT-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="13 7 -5" visible="false" ></a-entity>
+                <a-entity id="C-MRA-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="13 4 -5"></a-entity>
+                 <a-entity id="C-MRA-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="13 4 -5" visible="false" ></a-entity>
+                <a-entity id="C-T1-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="13 1 -5"></a-entity>
+                <a-entity id="C-T1-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="13 1 -5" visible="false" ></a-entity>
+                <a-entity id="C-DTI-G" geometry="primitive: sphere; radius: 0.3" material="color: green; opacity: 0.5; " position="13 -2 -5"></a-entity>
+                 <a-entity id="C-DTI-R" geometry="primitive: sphere; radius: 0.3" material="color: red; opacity: 0.5; " position="13 -2 -5" visible="false"></a-entity>
+      
+            <a-assets>
+                <a-asset-item id="skull" src="Whole_brain/gltf/skull.gltf"></a-asset-item>
+                <a-asset-item id="vessel" src="Whole_brain/gltf/vessel.obj"></a-asset-item>
+                <a-asset-item id="vesselmtl" src="Whole_brain/gltf/vessel.obj.mtl"></a-asset-item>
+                <a-asset-item id="pial" src="Whole_brain/gltf/pial.obj"></a-asset-item>
+            </a-assets> 
+           
+      
+            <a-entity id="CT" keyboard-controls="cameraUse: false" position="0 0 0 " scale="2 2 2"  rotation="0 0 10"> 
+                <a-entity gltf-model="src: #skull;"  id="model_skull" position="-6 0 0" material="shader: standard; color: blue; side:double;">
+               </a-entity> 
+            </a-entity>
+
+             <a-entity id="MRA" keyboard-controls="cameraUse: false" position="0 0 0 " scale="2 2 2"  rotation="0 0 10"> 
+                  <a-obj-model src="#vessel"  mtl= "#vesselmtl" id="model_vessel" material="shader: standard; color: red; side:double; " position="-6 0 0" rotation="0 0 0" >
+                                      </a-obj-model> 
+             </a-entity>
+
+              <a-entity id="T1" keyboard-controls="cameraUse: false" position=".2 0 -.2 " scale="2 2 2"  rotation="0 0 10"> 
+                  <a-obj-model src="#pial"  id="model_pial" material="shader:standard;  side:double; color:grey " position="-6 0 0" rotation="0 0 0" >
+                  </a-obj-model> 
+             </a-entity>
+
+
+
+     
+
+
+    </a-scene>
+
+    <script language="javascript">
+
+        document.querySelector('#D-CT-G').addEventListener('click', function () {
+          document.querySelector('#model_skull').setAttribute("visible", "false");
+          document.querySelector('#D-CT-G').setAttribute("visible", "false");
+          document.querySelector('#D-CT-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#D-CT-R').addEventListener('click', function () {
+          document.querySelector('#model_skull').setAttribute("visible", "true");
+          document.querySelector('#D-CT-G').setAttribute("visible", "true");
+          document.querySelector('#D-CT-R').setAttribute("visible", "false");
+        });
+
+        document.querySelector('#D-MRA-G').addEventListener('click', function () {
+          document.querySelector('#model_vessel').setAttribute("visible", "false");
+          document.querySelector('#D-MRA-G').setAttribute("visible", "false");
+          document.querySelector('#D-MRA-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#D-MRA-R').addEventListener('click', function () {
+          document.querySelector('#model_vessel').setAttribute("visible", "true");
+          document.querySelector('#D-MRA-G').setAttribute("visible", "true");
+          document.querySelector('#D-MRA-R').setAttribute("visible", "false");
+        });
+
+
+   
+
+        document.querySelector('#D-T1-R').addEventListener('click', function () {
+          document.querySelector('#model_pial').setAttribute("visible", "true");
+          document.querySelector('#D-T1-G').setAttribute("visible", "true");
+          document.querySelector('#D-T1-R').setAttribute("visible", "false");
+        });
+
+        document.querySelector('#D-T1-G').addEventListener('click', function () {
+          document.querySelector('#model_pial').setAttribute("visible", "false");
+          document.querySelector('#D-T1-G').setAttribute("visible", "false");
+          document.querySelector('#D-T1-R').setAttribute("visible", "true");
+        });
+
+      
+
+
+
+
+        document.querySelector('#C-CT-G').addEventListener('click', function () {
+          document.querySelector('#CT').removeAttribute("keyboard-controls");
+          document.querySelector('#C-CT-G').setAttribute("visible", "false");
+          document.querySelector('#C-CT-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#C-CT-R').addEventListener('click', function () {
+          document.querySelector('#CT').setAttribute("keyboard-controls", "cameraUse:false");
+          document.querySelector('#C-CT-G').setAttribute("visible", "true");
+          document.querySelector('#C-CT-R').setAttribute("visible", "false");
+        });
+
+        document.querySelector('#C-MRA-G').addEventListener('click', function () {
+          document.querySelector('#MRA').removeAttribute("keyboard-controls");
+          document.querySelector('#C-MRA-G').setAttribute("visible", "false");
+          document.querySelector('#C-MRA-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#C-MRA-R').addEventListener('click', function () {
+          document.querySelector('#MRA').setAttribute("keyboard-controls", "cameraUse:false");
+          document.querySelector('#C-MRA-G').setAttribute("visible", "true");
+          document.querySelector('#C-MRA-R').setAttribute("visible", "false");
+        });
+
+
+
+        document.querySelector('#C-T1-G').addEventListener('click', function () {
+          document.querySelector('#T1').removeAttribute("keyboard-controls");
+          document.querySelector('#C-T1-G').setAttribute("visible", "false");
+          document.querySelector('#C-T1-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#C-T1-R').addEventListener('click', function () {
+          document.querySelector('#T1').setAttribute("keyboard-controls", "cameraUse:false");
+          document.querySelector('#C-T1-G').setAttribute("visible", "true");
+          document.querySelector('#C-T1-R').setAttribute("visible", "false");
+        });
+
+        document.querySelector('#C-DTI-G').addEventListener('click', function () {
+          document.querySelector('#DTI').removeAttribute("keyboard-controls");
+          document.querySelector('#C-DTI-G').setAttribute("visible", "false");
+          document.querySelector('#C-DTI-R').setAttribute("visible", "true");
+        });
+
+        document.querySelector('#C-DTI-R').addEventListener('click', function () {
+          document.querySelector('#DTI').setAttribute("keyboard-controls", "cameraUse:false");
+          document.querySelector('#C-DTI-G').setAttribute("visible", "true");
+          document.querySelector('#C-DTI-R').setAttribute("visible", "false");
+        });
+
+
+
+
+
+
+    </script>
+
+  </body>
+</html>
